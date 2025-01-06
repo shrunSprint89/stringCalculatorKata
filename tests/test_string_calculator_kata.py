@@ -35,3 +35,6 @@ def test_add_custom_delimiter(calculator):
 
 def test_add_numbers_ignore_above_1000(calculator):
     assert calculator.Add("1001,2") == 2
+
+def test_add_custom_delimiter_any_length(calculator):
+    assert calculator.Add("//[***]\n1***2***3***5") == 11

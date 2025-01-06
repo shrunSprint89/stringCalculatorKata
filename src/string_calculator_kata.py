@@ -1,5 +1,11 @@
 class StringCalculator:
     def Add(self, numbers) -> int:
+        if numbers.startswith("//[") and "]" in numbers:
+            delimiter_end = numbers.find("]")
+            delimiter = numbers[3:delimiter_end]
+            numbers = numbers[delimiter_end + 2:]
+            number_list = numbers.split(delimiter)
+            return self.__calculate_sum(number_list)
         if numbers.startswith("//"):
             delimiter = numbers[2]
             numbers = numbers[4:]

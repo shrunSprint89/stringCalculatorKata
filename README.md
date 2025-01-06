@@ -14,8 +14,14 @@ This repo implements the String Calculator TDD Kata as defined by Roy Osherove (
 Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/string-calculator-kata.git
-cd string-calculator-kata
+git clone https://github.com/shrunSprint89/stringCalculatorKata.git
+cd stringCalculatorKata
+```
+
+Install dependencies using pip:
+
+```bash
+pip install -r requirements.txt
 ```
 
 ### Running Tests
@@ -23,7 +29,7 @@ cd string-calculator-kata
 To run the tests:
 
 ```bash
-pytest -v
+pytest
 ```
 
 ### Using the Calculator

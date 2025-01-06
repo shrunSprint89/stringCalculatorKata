@@ -38,3 +38,10 @@ def test_add_numbers_ignore_above_1000(calculator):
 
 def test_add_custom_delimiter_any_length(calculator):
     assert calculator.Add("//[***]\n1***2***3***5") == 11
+
+@pytest.mark.parametrize("input,expected", [
+    ("//[*][%]\n1*2%3", 6),
+    ("//[*][%]\n1*2%3*4", 10),
+])
+def test_add_multiple_delimiters(calculator, input,expected):
+    assert calculator.Add(input) == expected

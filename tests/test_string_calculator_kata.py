@@ -29,3 +29,6 @@ def test_add_twenty_numbers(calculator):
 ])
 def test_should_handle_newlines_between_numbers(calculator, input,expected):
     assert calculator.Add(input) == expected
+
+def test_add_custom_delimiter(calculator):
+    assert calculator.Add("//;\n1;2;5") == 8

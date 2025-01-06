@@ -45,3 +45,6 @@ def test_add_custom_delimiter_any_length(calculator):
 ])
 def test_add_multiple_delimiters(calculator, input,expected):
     assert calculator.Add(input) == expected
+
+def test_add_multiple_delimiters_with_different_lengths(calculator):
+    assert calculator.Add("//[***][%##]\n1***2%##3") == 6

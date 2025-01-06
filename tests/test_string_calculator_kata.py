@@ -1,6 +1,8 @@
 import pytest
-import StringCalculator
+from src.string_calculator_kata import StringCalculator
 
-def test_add_empty_string():
-    assert StringCalculator.Add("") == 0
+calculator = StringCalculator()
+
+def test_add_empty_string():    
+    assert calculator.Add("") == 0
 

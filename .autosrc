@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Check if python3.13 is installed
+if ! command -v python3.13 &> /dev/null; then
+    echo "Python 3.13 is not installed. Please install it first."
+    exit 1
+fi
+
+# Create virtual environment if it doesn't exist
+if [ ! -d "venv" ]; then
+    echo "Creating virtual environment with Python 3.13..."
+    python3.13 -m venv venv
+    
+    # Activate virtual environment
+    source venv/bin/activate
+    
+    echo "Virtual environment created successfully!"
+else
+    echo "Virtual environment already exists."
+fi
+
+# Store the current directory
+export PREV_DIR="$PWD"
+
+# Function to deactivate venv when leaving directory
+function check_directory {
+    if [[ "$PWD" != "$PREV_DIR"* ]]; then
+        if [ -n "$VIRTUAL_ENV" ]; then
+            echo "Leaving project directory, deactivating virtual environment..."
+            deactivate
+        fi
+    fi
+    PREV_DIR="$PWD"
+}
+
+# Function to clean up on shell exit
+function cleanup_venv {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        echo "Shell closing, deactivating virtual environment..."
+        deactivate
+    fi
+}
+
+# Add the directory check to PROMPT_COMMAND
+PROMPT_COMMAND="check_directory;$PROMPT_COMMAND"
+
+# Register the cleanup function to run when shell exits
+trap cleanup_venv EXIT
+
+# Always activate the virtual environment when sourcing this file
+source venv/bin/activate
+
+echo "Virtual environment activated. It will automatically deactivate when you leave this directory or close the shell."

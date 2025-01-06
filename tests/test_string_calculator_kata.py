@@ -32,3 +32,6 @@ def test_should_handle_newlines_between_numbers(calculator, input,expected):
 
 def test_add_custom_delimiter(calculator):
     assert calculator.Add("//;\n1;2;5") == 8
+
+def test_add_numbers_ignore_above_1000(calculator):
+    assert calculator.Add("1001,2") == 2

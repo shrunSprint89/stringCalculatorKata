@@ -15,5 +15,6 @@ class StringCalculator:
     def __calculate_sum(self, number_list):
         sum = 0
         for num in number_list:
-            sum += int(num)
+            if int(num) <= 1000:
+                sum += int(num)
         return sum
